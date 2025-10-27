@@ -1,0 +1,46 @@
+[
+  {
+    "id": "2025-10-01-protein",
+    "title": "Сколько белка нужно новичку",
+    "excerpt": "Разбираемся с нормами и источниками.",
+    "image": "https://raw.githubusercontent.com/<user>/<repo>/main/news/covers/protein.jpg",
+    "category": "Питание",
+    "publishedAt": "2025-10-01T08:00:00.000Z",
+    "readMinutes": 6,
+    "author": "Fitness Journal",
+    "contentUrl": "https://raw.githubusercontent.com/<user>/<repo>/main/news/2025-10-01-protein.html"
+  },
+  {
+    "id": "a2",
+    "title": "Белок без мифов: сколько и когда?",
+    "excerpt": "Порог за приём пищи, распределение в течение дня и что реально влияет на синтез мышечного белка.",
+    "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1600&auto=format&fit=crop",
+    "category": "Питание",
+    "publishedAt": "2025-10-22T12:10:00.000Z",
+    "readMinutes": 5,
+    "author": "Fitness Journal",
+    "contentUrl": "https://raw.githubusercontent.com/<user>/<repo>/main/news/a2.html"
+  },
+  {
+    "id": "a3",
+    "title": "Сон и восстановление: микро-привычки, которые работают",
+    "excerpt": "Гигиена сна, световой режим и дыхание. Что внедрить сегодня, чтобы завтра тренироваться лучше.",
+    "image": "https://images.unsplash.com/photo-1545665277-5937489579f2?q=80&w=1600&auto=format&fit=crop",
+    "category": "Восстановление",
+    "publishedAt": "2025-10-20T20:00:00.000Z",
+    "readMinutes": 4,
+    "author": "Fitness Journal",
+    "contentUrl": "https://raw.githubusercontent.com/<user>/<repo>/main/news/a3.html"
+  },
+  {
+    "id": "a4",
+    "title": "Почему прогресс застопорился: чек-лист плато",
+    "excerpt": "Пять диагностических пунктов: от техники и диапазонов повторений до стресса вне зала.",
+    "image": "https://images.unsplash.com/photo-1526403226607-8eb3fd55e8f2?q=80&w=1600&auto=format&fit=crop",
+    "category": "Тренировки",
+    "publishedAt": "2025-10-18T09:15:00.000Z",
+    "readMinutes": 7,
+    "author": "Fitness Journal",
+    "contentUrl": "https://raw.githubusercontent.com/<user>/<repo>/main/news/a4.html"
+  }
+]
