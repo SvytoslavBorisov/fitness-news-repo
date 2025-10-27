@@ -8,7 +8,7 @@
     "publishedAt": "2025-10-01T08:00:00.000Z",
     "readMinutes": 6,
     "author": "Fitness Journal",
-    "contentUrl": "https://raw.githubusercontent.com/<user>/<repo>/main/news/2025-10-01-protein.html"
+    "contentUrl": "https://raw.githubusercontent.com/SvytoslavBorisov/fitness-news-repo/main/news/2025-10-01-protein.html"
   },
   {
     "id": "a2",
@@ -19,7 +19,7 @@
     "publishedAt": "2025-10-22T12:10:00.000Z",
     "readMinutes": 5,
     "author": "Fitness Journal",
-    "contentUrl": "https://raw.githubusercontent.com/<user>/<repo>/main/news/a2.html"
+    "contentUrl": "https://raw.githubusercontent.com/SvytoslavBorisov/fitness-news-repo/main/news/2025-10-01-protein.html"
   },
   {
     "id": "a3",
@@ -30,7 +30,7 @@
     "publishedAt": "2025-10-20T20:00:00.000Z",
     "readMinutes": 4,
     "author": "Fitness Journal",
-    "contentUrl": "https://raw.githubusercontent.com/<user>/<repo>/main/news/a3.html"
+    "contentUrl": "https://raw.githubusercontent.com/SvytoslavBorisov/fitness-news-repo/main/news/2025-10-01-protein.html"
   },
   {
     "id": "a4",
@@ -41,6 +41,6 @@
     "publishedAt": "2025-10-18T09:15:00.000Z",
     "readMinutes": 7,
     "author": "Fitness Journal",
-    "contentUrl": "https://raw.githubusercontent.com/<user>/<repo>/main/news/a4.html"
+    "contentUrl": "https://raw.githubusercontent.com/SvytoslavBorisov/fitness-news-repo/main/news/2025-10-01-protein.html"
   }
 ]
