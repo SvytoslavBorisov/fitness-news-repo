@@ -1,92 +1,1048 @@
 <!doctype html>
-<html>
+<html lang="ru">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Белок без мифов</title>
+
+  <!-- Красивый шрифт -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
   <style>
-    body {
-      font-family: -apple-system, Roboto, Arial;
-      padding: 16px;
-      line-height: 1.6;
-      color: #0F172A;
-      background: #ffffff;
+    :root {
+      --bg-gradient-1: #0b1120;
+      --bg-gradient-2: #020617;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.18);
+      --accent-strong: #0ea5e9;
+      --accent-2: #a855f7;
+      --accent-3: #22c55e;
+      --card-bg: rgba(15, 23, 42, 0.86);
+      --card-border: rgba(148, 163, 184, 0.25);
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --pill-bg: rgba(15, 23, 42, 0.9);
+      --shadow-soft: 0 22px 45px rgba(15, 23, 42, 0.75);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-pill: 999px;
+      --blur-strength: 22px;
     }
-    h1 { font-size: 26px; margin-bottom: 12px; }
-    h2 { font-size: 20px; margin-top: 24px; }
-    img { max-width: 100%; border-radius: 12px; margin: 16px 0; }
-    p { margin: 12px 0; }
-    strong { color: #1e3a8a; }
+
+    * {
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(168, 85, 247, 0.16), transparent 55%),
+        radial-gradient(circle at top right, rgba(34, 197, 94, 0.15), transparent 55%),
+        linear-gradient(145deg, var(--bg-gradient-1), var(--bg-gradient-2));
+      color: var(--text-main);
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      padding: 18px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 980px;
+      margin: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .glass-shell {
+      position: relative;
+      border-radius: 34px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.96));
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      padding: 18px;
+    }
+
+    /* Подложка сияния */
+    .glow {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.7;
+      mix-blend-mode: screen;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(56, 189, 248, 0.23), transparent 58%),
+        radial-gradient(circle at 90% 12%, rgba(168, 85, 247, 0.27), transparent 60%),
+        radial-gradient(circle at 50% 100%, rgba(34, 197, 94, 0.24), transparent 58%);
+      filter: blur(40px);
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Хедер */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 4px 10px;
+    }
+
+    .hero-main {
+      flex: 2 1 280px;
+      min-width: 0;
+    }
+
+    .hero-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+      align-items: center;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 14px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.82);
+      border: 1px solid rgba(148, 163, 184, 0.38);
+      box-shadow: 0 14px 28px rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(18px);
+      font-size: 13px;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: conic-gradient(from 180deg, var(--accent), var(--accent-2), var(--accent-3), var(--accent));
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.32);
+    }
+
+    .pill-ghost {
+      opacity: 0.9;
+    }
+
+    .hero-title {
+      font-size: clamp(26px, 4vw, 34px);
+      line-height: 1.15;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin: 0 0 10px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(120deg, #7dd3fc, #a855f7, #22c55e);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      max-width: 460px;
+      color: var(--text-muted);
+    }
+
+    .hero-subtitle strong {
+      color: #e5e7eb;
+      font-weight: 600;
+    }
+
+    .hero-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .meta-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 11px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .meta-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.75);
+    }
+
+    /* Обложка */
+    .hero-media {
+      flex: 1.15 1 260px;
+      min-width: 0;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .hero-card {
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+      border-radius: 26px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(168, 85, 247, 0.14), transparent 65%),
+        rgba(15, 23, 42, 0.96);
+      overflow: hidden;
+      box-shadow: 0 22px 40px rgba(15, 23, 42, 0.9);
+    }
+
+    .hero-image-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-image-wrap::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.95), transparent 55%);
+    }
+
+    .hero-image {
+      display: block;
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      transform: scale(1.04);
+      filter: saturate(1.25) contrast(1.02);
+    }
+
+    .hero-card-meta {
+      position: absolute;
+      inset: auto 14px 14px 14px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      color: #e5e7eb;
+      font-size: 12px;
+    }
+
+    .hero-card-tag-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-card-badge {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.86);
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      font-size: 10px;
+      color: #cbd5f5;
+    }
+
+    .hero-card-metric {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      font-size: 10px;
+      color: #bae6fd;
+    }
+
+    .hero-card-metric span {
+      font-weight: 600;
+      color: #e0f2fe;
+    }
+
+    .hero-card-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .hero-card-sub {
+      font-size: 12px;
+      color: #9ca3af;
+    }
+
+    /* Основной текст */
+    .layout {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: minmax(0, 3.1fr) minmax(0, 1.5fr);
+      gap: 18px;
+    }
+
+    @media (max-width: 880px) {
+      .layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .hero-media {
+        justify-content: flex-start;
+      }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(var(--blur-strength));
+      padding: 18px 20px 18px;
+      box-shadow: 0 18px 32px rgba(15, 23, 42, 0.8);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(148, 163, 184, 0.18), transparent 58%);
+      opacity: 0.45;
+      pointer-events: none;
+    }
+
+    .card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card h2 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card h2 span.badge-number {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      background: radial-gradient(circle at 30% 0%, #38bdf8, #a855f7);
+      color: #0b1120;
+      box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.96), 0 0 0 1px rgba(148, 163, 184, 0.6);
+    }
+
+    .lead {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    p {
+      margin: 8px 0 10px;
+      font-size: 14px;
+      color: #e5e7eb;
+    }
+
+    strong {
+      color: #e5e7eb;
+      font-weight: 600;
+    }
+
+    .muted {
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    ul {
+      list-style: none;
+      margin: 6px 0 10px;
+      padding-left: 0;
+    }
+
+    li {
+      font-size: 14px;
+      margin: 6px 0;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      color: #e5e7eb;
+    }
+
+    li::before {
+      content: "•";
+      color: var(--accent);
+      font-size: 16px;
+      line-height: 1.2;
+      margin-top: -1px;
+    }
+
+    .highlight-strip {
+      margin-top: 10px;
+      border-radius: var(--radius-lg);
+      padding: 10px 12px;
+      background: linear-gradient(115deg, rgba(56, 189, 248, 0.18), rgba(15, 23, 42, 0.8), rgba(168, 85, 247, 0.18));
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      font-size: 13px;
+      color: #e0f2fe;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .highlight-strip-icon {
+      font-size: 18px;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .chip {
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 12px;
+      color: #cbd5f5;
+    }
+
+    .chip b {
+      color: #e5e7eb;
+      font-weight: 600;
+    }
+
+    .myth {
+      margin-top: 10px;
+      border-radius: var(--radius-lg);
+      padding: 10px 12px;
+      background: rgba(15, 23, 42, 0.94);
+      border: 1px solid rgba(248, 113, 113, 0.6);
+      position: relative;
+    }
+
+    .myth-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #fecaca;
+      margin-bottom: 4px;
+    }
+
+    .myth-label-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0%, #f97373, #f87171);
+      box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.35);
+    }
+
+    .myth p {
+      margin: 3px 0 4px;
+      font-size: 13px;
+      color: #fee2e2;
+    }
+
+    .myth small {
+      display: block;
+      margin-top: 4px;
+      font-size: 12px;
+      color: #fecaca;
+      opacity: 0.9;
+    }
+
+    .tip {
+      margin-top: 10px;
+      border-radius: var(--radius-lg);
+      padding: 10px 12px;
+      background: rgba(22, 163, 74, 0.12);
+      border: 1px dashed rgba(34, 197, 94, 0.85);
+      font-size: 13px;
+      color: #bbf7d0;
+    }
+
+    .tip strong {
+      color: #bbf7d0;
+    }
+
+    /* Правая колонка */
+    .side-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin: 0 0 8px;
+    }
+
+    .side-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .side-widget {
+      border-radius: 18px;
+      padding: 11px 12px;
+      background: rgba(15, 23, 42, 0.98);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 13px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .side-widget::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.22), transparent 65%);
+      opacity: 0.65;
+      pointer-events: none;
+    }
+
+    .side-widget h3 {
+      margin: 0 0 6px;
+      font-size: 14px;
+      letter-spacing: -0.01em;
+    }
+
+    .side-widget p {
+      font-size: 13px;
+      color: #e5e7eb;
+      margin: 3px 0;
+    }
+
+    .side-lines {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12px;
+      line-height: 1.5;
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: 12px;
+      padding: 7px 8px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      margin-top: 6px;
+      color: #cbd5f5;
+    }
+
+    .side-lines span {
+      color: #38bdf8;
+    }
+
+    .side-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .side-badge {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 11px;
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    /* Блок выводов */
+    .summary {
+      margin-top: 16px;
+      border-radius: var(--radius-xl);
+      padding: 14px 16px 16px;
+      background:
+        radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.16), transparent 55%),
+        radial-gradient(circle at 100% 0, rgba(168, 85, 247, 0.16), transparent 55%),
+        rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      box-shadow: 0 16px 32px rgba(15, 23, 42, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .summary-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #bfdbfe;
+      margin: 0 0 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-title::before {
+      content: "";
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: conic-gradient(from 180deg, #38bdf8, #a855f7, #22c55e, #38bdf8);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4);
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .summary-card {
+      border-radius: 16px;
+      padding: 10px 12px;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      font-size: 13px;
+    }
+
+    .summary-card b {
+      display: block;
+      margin-bottom: 2px;
+      color: #e5e7eb;
+    }
+
+    .summary-card span {
+      color: #9ca3af;
+      font-size: 12px;
+    }
+
+    .footer-note {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: right;
+    }
+
+    /* Лёгкая анимация */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-4px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .hero-card {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 12px;
+      }
+      .glass-shell {
+        padding: 14px;
+        border-radius: 26px;
+      }
+      .card {
+        border-radius: 20px;
+        padding: 14px 14px 16px;
+      }
+      .summary {
+        border-radius: 22px;
+        padding: 12px 12px 14px;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>Белок без мифов: сколько, когда и почему это важно</h1>
+  <main class="page">
+    <div class="glass-shell">
+      <div class="glow"></div>
+      <div class="content">
 
-  <p>Белок — главный строительный материал мышц, гормонов, ферментов и иммунной системы. Но вокруг него до сих пор много мифов: «за раз усваивается только 30 граммов», «ночью есть нельзя», «больше 1 г/кг — вредно». Эта статья разбирает популярные заблуждения опираясь только на данные ведущих спортивных и клинических организаций (ISSN, ACSM) и крупных мета-анализов.</p>
+        <!-- HERO -->
+        <section class="hero">
+          <div class="hero-main">
+            <div class="hero-pill-row">
+              <div class="pill">
+                <span class="pill-dot"></span>
+                Наука о питании · Без мифов
+              </div>
+              <div class="pill pill-ghost">
+                Практика для тренирующихся с железом
+              </div>
+            </div>
 
-  <img src="https://images.unsplash.com/photo-1604908177522-f86ef3b6d132?auto=format&fit=crop&w=1200&q=80" alt="Protein Foods" />
+            <h1 class="hero-title">
+              Белок без мифов:
+              <span>сколько, когда и зачем</span>
+            </h1>
 
-  <h2>Сколько белка нужно в день?</h2>
-  <p>Современные научные консенсусы (ISSN, **Phillips 2014**, **Morton et al. 2018**) сходятся в том, что оптимальный диапазон для людей, тренирующихся с отягощениями, составляет:</p>
+            <p class="hero-subtitle">
+              Мы разложим по полочкам, <strong>сколько белка нужно реально</strong>,
+              почему «30&nbsp;г за раз» — миф, и как распределять приёмы,
+              чтобы тренировки возвращали максимум результата.
+            </p>
 
-  <p><strong>1.6–2.2 г белка на кг массы тела в сутки</strong></p>
+            <div class="hero-meta-row">
+              <div class="meta-chip">
+                <span class="meta-dot"></span>
+                Основано на данных ISSN, ACSM и крупных мета-анализов
+              </div>
+              <div class="meta-chip">
+                <span class="meta-dot"></span>
+                Подходит для новичков и продвинутых
+              </div>
+            </div>
+          </div>
 
-  <p>Почему не меньше? Мета-анализ Morton's 2018 (n=1863 участников) показывает, что **порог насыщения роста мышц начинается от 1.6 г/кг** — ниже эффект резко падает.</p>
-  <p>Почему можно больше? До **3.0 г/кг** безопасно для здоровых людей (ISSN Position Stand, 2017), а иногда полезно при сушке для сохранения мышц.</p>
+          <div class="hero-media">
+            <article class="hero-card">
+              <div class="hero-image-wrap">
+                <img
+                  class="hero-image"
+                  src="https://images.unsplash.com/photo-1604908177522-f86ef3b6d132?auto=format&fit=crop&w=1200&q=80"
+                  alt="Продукты, богатые белком"
+                >
+              </div>
+              <div class="hero-card-meta">
+                <div class="hero-card-tag-row">
+                  <div class="hero-card-badge">Evidence-based</div>
+                  <div class="hero-card-metric">
+                    🔬 <span>1.6–2.2 г</span> / кг в сутки
+                  </div>
+                </div>
+                <div class="hero-card-title">
+                  Оптимальный белковый диапазон
+                </div>
+                <div class="hero-card-sub">
+                  Синтез мышечного белка, восстановление и сила — в цифрах, а не в догадках.
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
 
-  <h2>Миф про «усвоение 30 граммов за раз»</h2>
-  <p>Эта цифра давно устарела. Она относится к старым исследованиям, где измеряли синтез мышечного белка после одной порции сывороточного протеина у нетренированных взрослых.</p>
+        <!-- MAIN LAYOUT -->
+        <section class="layout">
+          <!-- LEFT: ОСНОВНОЙ ТЕКСТ -->
+          <article class="card">
+            <div class="card-inner">
+              <p class="lead">
+                Белок — главный строительный материал мышц, гормонов, ферментов и иммунной системы.
+                Но вокруг него до сих пор живут легенды: «организм усваивает только 30&nbsp;г за раз»,
+                «ночью есть нельзя», «больше 1&nbsp;г/кг — вредно».
+                Ниже — только то, что подтверждено современной спортивной наукой.
+              </p>
 
-  <p>Актуальные данные (Moore 2015, Schoenfeld & Aragon 2018) показывают:</p>
+              <h2>
+                <span class="badge-number">1</span>
+                Сколько белка нужно в день на самом деле?
+              </h2>
 
-  <p><strong>Оптимальная разовая порция = 0.3–0.5 г белка на кг массы тела</strong></p>
+              <p>
+                Современные позиции International Society of Sports Nutrition (ISSN), American College of Sports Medicine (ACSM)
+                и мета-анализы (Morton и др., 2018; Phillips, 2014) сходятся в одном:
+              </p>
 
-  <ul>
-    <li>Для человека 60 кг это 18–30 г.</li>
-    <li>Для 80 кг — 24–40 г.</li>
-    <li>Для 100 кг — 30–50 г.</li>
-  </ul>
+              <div class="highlight-strip">
+                <div class="highlight-strip-icon">📌</div>
+                <div>
+                  <strong>Оптимальный диапазон для тренирующихся с отягощениями — 1.6–2.2 г белка на кг массы тела в сутки.</strong><br>
+                  Причём нижняя граница — минимальный уровень, при котором рост и сохранение мышц уже хорошо поддерживаются.
+                </div>
+              </div>
 
-  <p>То есть нет фиксированного «магического числа». Порог зависит от массы тела, мышечной массы и тренировочного опыта.</p>
+              <p class="muted">
+                Ниже 1.6 г/кг прирост мышц и силы в среднем заметно слабее; выше 2.2 г/кг — запас по безопасности для здоровых людей и удобный ресурс при дефиците калорий.
+              </p>
 
-  <h2>Почему важно равномерное распределение</h2>
-  <p>Работы **Areta et al., 2013** и последующие мета-анализы показывают, что лучший мышечный ответ достигается при равномерном распределении белка.</p>
+              <div class="chip-row">
+                <div class="chip"><b>«Мышечный минимум»</b> · 1.6 г/кг</div>
+                <div class="chip"><b>Комфортный диапазон</b> · 1.8–2.2 г/кг</div>
+                <div class="chip"><b>Сушка / дефицит</b> · до 2.4–3.0 г/кг</div>
+              </div>
 
-  <p><strong>Идеально — 3–5 приёмов пищи с 0.3–0.5 г/кг каждый.</strong></p>
+              <p>
+                ISSN отмечает, что у здоровых людей даже высокие дозы (до 3.0 г/кг) не показывают вреда для почек и печени —
+                при условии, что нет хронических заболеваний и общее питание сбалансировано.
+              </p>
 
-  <p>Причина проста: синтез мышечного белка растёт волнообразно и возвращается к базовой линии примерно через 3 часа. Частые мини-дозы дают хуже эффект, а слишком редкие — «пропускают» потенциальные пики роста.</p>
+              <h2>
+                <span class="badge-number">2</span>
+                Миф «организм усваивает только 30 граммов»
+              </h2>
 
-  <h2>Нужно ли есть белок сразу после тренировки?</h2>
-  <p>Старая теория «анаболического окна 30 минут» давно признана мифом. Мета-анализы последних лет показывают: окно шире, чем считалось.</p>
+              <p>
+                Жёсткая цифра «30 г» — это упрощённое и устаревшее представление о данных первых исследований,
+                где измеряли реакцию мышц нетренированных людей на одну порцию сывороточного протеина.
+              </p>
 
-  <p><strong>Важно общее суточное количество белка, а не точные минуты после тренировки.</strong></p>
+              <div class="myth">
+                <div class="myth-label">
+                  <span class="myth-label-dot"></span>
+                  Миф
+                </div>
+                <p>«Больше 30 г белка за раз организм просто не усваивает»</p>
+                <small>На самом деле усваивает, но синтез мышечного белка имеет порог насыщения, зависящий от веса и контекста.</small>
+              </div>
 
-  <p>Однако есть нюанс: если ты тренировался натощак или перерыв между приёмами пищи долгий, белок после тренировки действительно важен.</p>
+              <p>
+                Обзор работ Moore, 2015 и анализ Schoenfeld &amp; Aragon, 2018 показывают:
+                <strong>разумнее считать порог не в граммах, а в г/кг массы тела.</strong>
+              </p>
 
-  <h2>Можно ли есть белок на ночь?</h2>
-  <p>Да. Более того, исследования **Snijders 2015** показывают, что **казеин перед сном увеличивает ночной синтез мышечного белка у спортсменов**.</p>
+              <div class="highlight-strip">
+                <div class="highlight-strip-icon">⚖️</div>
+                <div>
+                  <strong>Оптимальная разовая порция = 0.3–0.5 г белка на кг массы тела.</strong><br>
+                  Это максимизирует синтез мышечного белка при одной трапезе.
+                </div>
+              </div>
 
-  <p>Единственное ограничение — удобство пищеварения. Если нет дискомфорта, ночной белок — отличный инструмент для прогресса.</p>
+              <ul>
+                <li>Человек 60 кг → 18–30 г белка за приём.</li>
+                <li>Человек 80 кг → 24–40 г.</li>
+                <li>Человек 100 кг → 30–50 г.</li>
+              </ul>
 
-  <h2>Животный или растительный? Что лучше?</h2>
-  <p>ISSN подтверждает: животные источники имеют более полный аминокислотный профиль и высокую биодоступность, но **растительные тоже эффективны**, если:</p>
+              <p class="muted">
+                Организм «видит» и 40, и 45 г — это не пропадает «в никуда». Просто после определённого порога
+                <strong>рост синтеза мышечного белка уже не увеличивается пропорционально дозе</strong>.
+              </p>
 
-  <ul>
-    <li>достигается общая суточная норма белка;</li>
-    <li>комбинируются разные источники (например, горох + рис);</li>
-    <li>общее содержание лейцина достигает ~2.5–3 г на приём.</li>
-  </ul>
+              <h2>
+                <span class="badge-number">3</span>
+                Почему важно распределять белок по 3–5 приёмам
+              </h2>
 
-  <h2>Главные выводы</h2>
-  <p><strong>1. Суточная норма: 1.6–2.2 г/кг (при сушке до 2.4–3.0 г/кг).</strong></p>
-  <p><strong>2. Разовая порция: 0.3–0.5 г/кг.</strong></p>
-  <p><strong>3. Равномерное распределение по 3–5 приёмам.</strong></p>
-  <p><strong>4. Нет мифа про «30 г» — количество зависит от массы тела.</strong></p>
-  <p><strong>5. Белок на ночь можно — и это даже полезно.</strong></p>
-  <p><strong>6. Растительный белок работает, если правильно комбинировать.</strong></p>
+              <p>
+                Синтез мышечного белка растёт волной после приёма пищи и возвращается к базовой линии примерно за 3 часа.
+                Работы Areta и др., 2013 показали, что редкие и очень большие дозы дают хуже результат,
+                чем умеренные и распределённые.
+              </p>
 
-  <h2>Заключение</h2>
-  <p>Белок — это не магия и не мифология. Это инструмент. Поняв реальные научные принципы — дозировку, распределение и качество — можно ускорить прогресс, улучшить восстановление и сделать тренировки гораздо эффективнее.</p>
+              <div class="highlight-strip">
+                <div class="highlight-strip-icon">⏱️</div>
+                <div>
+                  <strong>Оптимально — 3–5 приёмов пищи с 0.3–0.5 г/кг на каждый.</strong><br>
+                  Так ты запускаешь несколько «пиков» синтеза мышечного белка в течение дня.
+                </div>
+              </div>
 
+              <p>Пример для человека 70 кг с целью 2.0 г/кг (≈140 г белка в сутки):</p>
+
+              <ul>
+                <li>Завтрак — 30–35 г</li>
+                <li>Обед — 30–35 г</li>
+                <li>Перекус / шейк — 25–30 г</li>
+                <li>Ужин — 30–35 г</li>
+                <li>При необходимости — ещё 15–20 г перед сном</li>
+              </ul>
+
+              <div class="tip">
+                <strong>Частые мини-порции по 5–10 г</strong> каждые полчаса выглядят красиво в теории,
+                но на практике дают хуже мышечный ответ, чем несколько полноценных порций с достаточным содержанием
+                лейцина и общего белка.
+              </div>
+
+              <h2>
+                <span class="badge-number">4</span>
+                «Анаболическое окно»: есть ли те самые 30 минут после тренировки?
+              </h2>
+
+              <p>
+                Классическое утверждение «нужно срочно выпить шейк в течение 30 минут» переоценено.
+                Современные обзоры говорят, что окно гораздо шире:
+                важнее общее суточное количество белка и то, <em>что ты ел до тренировки</em>.
+              </p>
+
+              <p>
+                Если за 1–3 часа до тренировки была полноценная белковая еда,
+                синтез мышечного белка будет повышен и во время, и после неё.
+              </p>
+
+              <div class="highlight-strip">
+                <div class="highlight-strip-icon">🏋️</div>
+                <div>
+                  <strong>Критично не «30 минут после», а общее покрытие белком до и после тренировки.</strong><br>
+                  Но если ты тренировался натощак или с долгим перерывом от последнего приёма пищи —
+                  белок после тренировки становится гораздо важнее.
+                </div>
+              </div>
+
+              <h2>
+                <span class="badge-number">5</span>
+                Белок на ночь: можно или нельзя?
+              </h2>
+
+              <p>
+                Исследования Snijders и коллег (2015) показывают, что
+                <strong>казеин перед сном повышает ночной синтез мышечного белка у тренирующихся спортсменов</strong>.
+                Организм не «выключает» усвоение по часам — он реагирует на аминокислоты, попадающие в кровь.
+              </p>
+
+              <ul>
+                <li>Казеин или творог на ночь дают медленный, растянутый поток аминокислот.</li>
+                <li>Это помогает покрыть те 7–9 часов, когда ты спишь и не ешь.</li>
+              </ul>
+
+              <p class="muted">
+                Единственное ограничение — собственный комфорт: если плотная еда перед сном ухудшает сон или вызывает тяжесть,
+                стоит подобрать меньшую порцию или более лёгкий источник белка.
+              </p>
+
+              <h2>
+                <span class="badge-number">6</span>
+                Животный vs растительный белок
+              </h2>
+
+              <p>
+                Животные источники (мясо, рыба, яйца, молочка) имеют более полный аминокислотный профиль
+                и выше биодоступность. Но это не значит, что растительный белок не работает.
+              </p>
+
+              <p>
+                Позиции ISSN: растительное питание может быть
+                <strong>полноценным для спорта</strong>, если:
+              </p>
+
+              <ul>
+                <li>суточная норма белка достигается;</li>
+                <li>комбинируются разные источники (например, горох + рис, бобовые + злаки);</li>
+                <li>на приём пищи набирается примерно 2.5–3 г лейцина — ключевой аминокислоты для запуска синтеза мышечного белка.</li>
+              </ul>
+
+              <div class="tip">
+                <strong>На растительном рационе</strong> суточная цель часто чуть выше (ближе к 2.0–2.2 г/кг),
+                чтобы компенсировать меньшую биодоступность и профиль аминокислот.
+              </div>
+            </div>
+          </article>
+
+          <!-- RIGHT: САЙДБАР -->
+          <aside class="card">
+            <div class="card-inner">
+              <p class="side-title">быстрые ориентиры</p>
+
+              <div class="side-grid">
+                <div class="side-widget">
+                  <h3>Твоя суточная цель</h3>
+                  <p>Для здорового активно тренирующегося человека:</p>
+                  <div class="side-lines">
+                    <span>масса</span> × 1.6–2.2 г = белок в сутки<br>
+                    <span>пример</span>: 75 кг × 2.0 г = 150 г
+                  </div>
+                  <div class="side-badge-row">
+                    <div class="side-badge">Рост / масса мышц</div>
+                    <div class="side-badge">Поддержка иммунитета</div>
+                  </div>
+                </div>
+
+                <div class="side-widget">
+                  <h3>Разовая порция</h3>
+                  <p>Ориентируйся не на «30 г», а на диапазон:</p>
+                  <div class="side-lines">
+                    0.3–0.5 г / кг за приём<br>
+                    для 70 кг → 21–35 г
+                  </div>
+                  <p class="muted" style="margin-top:6px;">
+                    Всё, что сверх, организм тоже использует — просто не напрямую для роста мышц.
+                  </p>
+                </div>
+
+                <div class="side-widget">
+                  <h3>Идеальное распределение</h3>
+                  <p>Лучше всего сработает схема:</p>
+                  <div class="side-lines">
+                    3–5 приёмов × 0.3–0.5 г/кг<br>
+                    интервал 3–4 часа
+                  </div>
+                  <div class="side-badge-row">
+                    <div class="side-badge">📈 несколько «пиков» синтеза</div>
+                    <div class="side-badge">😴 ночной белок по желанию</div>
+                  </div>
+                </div>
+
+                <div class="side-widget">
+                  <h3>Что запомнить точно</h3>
+                  <p class="muted" style="margin-top:4px;">
+                    Не существует магического числа «30 г». Есть:
+                  </p>
+                  <ul style="margin-top:2px;">
+                    <li>суточный диапазон 1.6–2.2 г/кг;</li>
+                    <li>разовая цель 0.3–0.5 г/кг;</li>
+                    <li>распределение по 3–5 приёмам.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <!-- SUMMARY -->
+        <section class="summary">
+          <h2 class="summary-title">главные выводы в одном блоке</h2>
+          <div class="summary-grid">
+            <div class="summary-card">
+              <b>1. Суточная норма</b>
+              <span>1.6–2.2 г/кг для роста и поддержки мышц; при сушке возможно до 2.4–3.0 г/кг у здоровых людей.</span>
+            </div>
+            <div class="summary-card">
+              <b>2. Разовая порция</b>
+              <span>0.3–0.5 г/кг за приём, а не фиксированные 30 г для всех.</span>
+            </div>
+            <div class="summary-card">
+              <b>3. Распределение</b>
+              <span>3–5 приёмов в день дают больше «мышечных пиков», чем 1–2 огромные трапезы.</span>
+            </div>
+            <div class="summary-card">
+              <b>4. Окно после тренировки</b>
+              <span>Важно общее покрытие белком, а не догматичные «30 минут».</span>
+            </div>
+            <div class="summary-card">
+              <b>5. Белок на ночь</b>
+              <span>Казеин или творог перед сном помогают закрыть ночной период без еды.</span>
+            </div>
+            <div class="summary-card">
+              <b>6. Растительный рацион</b>
+              <span>Работает, если достигается суточная норма и грамотно комбинируются источники.</span>
+            </div>
+          </div>
+
+          <p class="footer-note">
+            Статья опирается на данные ISSN, ACSM и исследования Morton et al., Phillips, Moore, Schoenfeld &amp; Aragon, Areta, Snijders и др.
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
 </body>
 </html>
